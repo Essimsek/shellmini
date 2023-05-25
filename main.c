@@ -6,7 +6,7 @@
 /*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:37:55 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/25 17:30:12 by esimsek          ###   ########.fr       */
+/*   Updated: 2023/05/26 01:00:56 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	init_shell(char *input)
 	g_ms.process_count = 0;
 	tokenize(input);
 	if (!lexer())
+	{
+		free_process();
 		return ;
+	}
 	start_cmd();
 	free_process();
 }
