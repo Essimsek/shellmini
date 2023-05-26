@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcakmak <hcakmak@student.42istanbul.com>   +#+  +:+       +#+        */
+/*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:33:28 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/22 14:33:29 by hcakmak          ###   ########.fr       */
+/*   Updated: 2023/05/26 14:55:45 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,26 @@ void	put_char(char *input)
 int	skip_flag(char **str)
 {
 	int	i;
+	int	j;
 
 	i = 1;
 	while (str[i])
 	{
-		if (ft_strcmp(str[i], "-n"))
-			i++;
+		if (str[i][0] == '-' && str[i][0])
+		{
+			j = 1;
+			while (str[i][j] == 'n' && str[i][j])
+				j++;
+			if (str[i][j] == '\0')
+			{
+				if (j > 1 && str[i][j - 1] == 'n')
+					i++;
+			}
+			else
+				return (i);
+		}
 		else
-			break ;
+			return (i);
 	}
 	return (i);
 }
