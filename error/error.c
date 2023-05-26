@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcakmak <hcakmak@student.42istanbul.com>   +#+  +:+       +#+        */
+/*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:37:25 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/22 14:37:27 by hcakmak          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:52:15 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	command_err(char *str)
 {
-	errno = 127;
+	g_ms.errn = 127;
 	write(2, "minishell: ", 11);
 	write(2, str, ft_strlen(str));
 	write(2, ": command not found\n", 20);
 	if (!is_parent())
-		exit(errno);
+		exit(g_ms.errn);
 }
 
 void	token_err(int type)
@@ -38,7 +38,7 @@ void	token_err(int type)
 		red = "|";
 	else
 		red = "newline";
-	errno = 258;
+	g_ms.errn = 258;
 	write(2, "minishell: syntax error near unexpected token '", 47);
 	write(2, red, ft_strlen(red));
 	write(2, "'\n", 2);
@@ -46,23 +46,23 @@ void	token_err(int type)
 
 void	directory_err(char *str)
 {
-	errno = 126;
+	g_ms.errn = 126;
 	write(2, "minishell: ", 11);
 	write(2, str, ft_strlen(str));
 	write(2, ": is a directory\n", 17);
 	if (!is_parent())
-		exit(errno);
+		exit(g_ms.errn);
 }
 
 void	no_file_err(char *str)
 {
 	if (ft_strchr(str, '/'))
-		errno = 127;
+		g_ms.errn = 127;
 	else
-		errno = 1;
+		g_ms.errn = 1;
 	write(2, "minishell: ", 11);
 	write(2, str, ft_strlen(str));
 	write(2, ": No such file or directory\n", 28);
 	if (!is_parent())
-		exit(errno);
+		exit(g_ms.errn);
 }

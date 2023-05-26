@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: essimsek <essimsek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:11:26 by essimsek          #+#    #+#             */
-/*   Updated: 2023/05/22 16:11:27 by essimsek         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:52:27 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ char	*parse_dollar_op(char *str)
 	push_new_str(&result, data);
 	first = i;
 	if (str[i] == '?' && ++i)
-		push_new_str(&result, ft_itoa(errno));
+		push_new_str(&result, ft_itoa(g_ms.errn));
 	else
 	{
 		while (valid_op(str[i]))

@@ -6,7 +6,7 @@
 /*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:37:55 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/26 01:00:56 by esimsek          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:53:50 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_minishell	g_ms;
 
 void	init_app(char **env)
 {
-	errno = 0;
+	g_ms.errn = 0;
 	g_ms.paths = NULL;
 	g_ms.parent_pid = getpid();
 	set_env(env);
@@ -42,6 +42,7 @@ void	ctrl_c(int sig)
 {
 	(void)sig;
 	g_ms.ignore = TRUE;
+	g_ms.errn = 1;
 	ioctl(STDIN_FILENO, TIOCSTI, "\n");
 	write(1, "\033[A", 3);
 }
@@ -51,7 +52,7 @@ void	ctrl_d(char *input)
 	if (!input)
 	{
 		printf("exit\n");
-		exit(errno);
+		exit(g_ms.errn);
 	}
 }
 
@@ -81,5 +82,5 @@ int	main(int ac, char **av, char **env)
 		}
 		free(input);
 	}
-	exit(errno);
+	exit(g_ms.errn);
 }

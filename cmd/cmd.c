@@ -6,7 +6,7 @@
 /*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:36:42 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/25 17:03:49 by esimsek          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:50:44 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	wait_cmd(void)
 	{
 		if (process->pid != -1)
 		{
-			waitpid(process->pid, &errno, 0);
-			errno = WEXITSTATUS(errno);
+			waitpid(process->pid, &g_ms.errn, 0);
+			g_ms.errn = WEXITSTATUS(g_ms.errn);
 		}
 		process = process->next;
 	}

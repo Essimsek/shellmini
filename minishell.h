@@ -6,7 +6,7 @@
 /*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:38:19 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/25 17:15:13 by esimsek          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:49:43 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <readline/history.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <errno.h>
 # include <string.h>
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -79,6 +78,7 @@ typedef struct s_process
 typedef struct s_minishell
 {
 	int			parent_pid;
+	int			errn;
 	int			process_count;
 	int			ignore;
 	char		**env;

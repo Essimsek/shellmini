@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcakmak <hcakmak@student.42istanbul.com>   +#+  +:+       +#+        */
+/*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:36:50 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/22 14:36:51 by hcakmak          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:50:06 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	run_cmd(t_process *process)
 		path = get_path(process->execute[0]);
 		execve(path, process->execute, g_ms.env);
 		command_err(process->execute[0]);
-		exit(errno);
+		exit(g_ms.errn);
 	}
 	else
 	{

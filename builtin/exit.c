@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcakmak <hcakmak@student.42istanbul.com>   +#+  +:+       +#+        */
+/*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:33:54 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/22 14:33:56 by hcakmak          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:53:02 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	ft_get_arg_count(char **input)
 
 int	ft_isnumber_with_sign(char *arg)
 {
+	if (*arg == '+' || *arg == '-')
+			arg++;
 	while (*arg)
 	{
-		if ((*arg >= '0' && *arg <= '9') || *arg == '+' || *arg == '-')
+		if ((*arg >= '0' && *arg <= '9'))
 			arg++;
 		else
 			return (FALSE);
@@ -39,7 +41,7 @@ void	builtin_exit(char **input)
 	if (ft_get_arg_count(input) == 1)
 	{
 		printf("exit\n");
-		exit(errno);
+		exit(g_ms.errn);
 	}
 	else
 	{
@@ -48,9 +50,10 @@ void	builtin_exit(char **input)
 			if (ft_get_arg_count(input) > 2)
 			{
 				write(2, "exit\nminishell: exit: too many arguments\n", 41);
-				errno = 1;
+				g_ms.errn = 1;
 				return ;
 			}
+			write(2, "exit\n", 6);
 			exit(ft_atoi(input[1]) % 256);
 		}
 		write(2, "exit\nminishell: exit: numeric argument required\n", 48);

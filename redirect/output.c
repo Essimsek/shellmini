@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcakmak <hcakmak@student.42istanbul.com>   +#+  +:+       +#+        */
+/*   By: esimsek <esimsek@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:38:51 by hcakmak           #+#    #+#             */
-/*   Updated: 2023/05/22 14:38:53 by hcakmak          ###   ########.fr       */
+/*   Updated: 2023/05/26 15:53:23 by esimsek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	output(char *file, int mode)
 		if (is_parent())
 			return ;
 		else
-			exit(errno);
+			exit(g_ms.errn);
 	}
 	dup2(fd, 1);
 	close(fd);
